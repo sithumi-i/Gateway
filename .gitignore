@@ -1,0 +1,56 @@
+# Visual Studio / .NET Core
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.csproj.user
+*.sln.docstates
+
+# Build artifacts
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# ASP.NET temporary files
+*.dbmdl
+*.log
+*.vspscc
+*.vssscc
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Publish output
+publish/
+*.publish.xml
+
+# IIS Express
+/.vs/*
+*.pidb
+*.svclog
+
+# User secrets
+secrets.json
+
+# OS files
+Thumbs.db
+ehthumbs.db
+.DS_Store
+
+# JetBrains
+*.dotCover
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
