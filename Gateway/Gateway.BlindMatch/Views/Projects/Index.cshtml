@@ -1,0 +1,59 @@
+@model IEnumerable<Gateway.BlindMatch.Models.ProjectProposal>
+@{
+    ViewData["Title"] = "My Proposals";
+}
+
+<h1>My Project Proposals</h1>
+<p class="text-muted mb-4">Manage and track the status of your research proposals.</p>
+<div class="mb-4">
+    <a asp-action="Create" class="btn btn-primary shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg me-2" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+        </svg>Create New Proposal
+    </a>
+</div>
+
+<div class="table-responsive">
+<table class="table table-borderless align-middle">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>Research Area</th>
+            <th>Status</th>
+            <th>Supervisor</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+            <td>@Html.DisplayFor(modelItem => item.ResearchArea.Name)</td>
+            <td>
+                @{
+                    string statusBadge = item.Status switch
+                    {
+                        Gateway.BlindMatch.Models.ProjectStatus.Pending => "bg-secondary",
+                        Gateway.BlindMatch.Models.ProjectStatus.UnderReview => "bg-warning text-dark",
+                        Gateway.BlindMatch.Models.ProjectStatus.Matched => "bg-success",
+                        _ => "bg-secondary"
+                    };
+                }
+                <span class="badge @statusBadge">@item.Status.ToString()</span>
+            </td>
+            <td>
+                @if (item.Status == Gateway.BlindMatch.Models.ProjectStatus.Matched && item.Supervisor != null)
+                {
+                    <strong>@item.Supervisor.FullName</strong>
+                    <br />
+                    <small>@item.Supervisor.Email</small>
+                }
+                else
+                {
+                    <span class="text-muted">Currently Anonymous/Pending</span>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
