@@ -1,56 +1,41 @@
-# Visual Studio / .NET Core
-.vs/
-*.user
-*.userosscache
-*.suo
-*.userprefs
-*.csproj.user
-*.sln.docstates
-
-# Build artifacts
+# Binaries
 bin/
 obj/
-**/bin/
-**/obj/
+
+# User-specific files
+*.user
+*.suo
+
+# Visual Studio
+.vs/
 
 # Rider
 .idea/
-*.sln.iml
 
-# Visual Studio Code
-.vscode/
-
-# ASP.NET temporary files
-*.dbmdl
-*.log
-*.vspscc
-*.vssscc
-
-# NuGet
-*.nupkg
-packages/
-.nuget/
-
-# Publish output
-publish/
-*.publish.xml
-
-# IIS Express
-/.vs/*
-*.pidb
-*.svclog
-
-# User secrets
-secrets.json
-
-# OS files
-Thumbs.db
-ehthumbs.db
+# OS generated files
 .DS_Store
+Thumbs.db
 
-# JetBrains
-*.dotCover
-.idea/
+# Logs
+*.log
 
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
+# NuGet packages
+packages/
+
+# Build outputs
+build/
+
+# Test results
+TestResults/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Database files
+*.db
+*.sqlite
+
+# Environment files
+.env
+appsettings.*.json
