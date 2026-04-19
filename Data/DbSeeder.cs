@@ -1,3 +1,4 @@
+using AspNetCore.Identity.Mongo.Model;
 using Microsoft.AspNetCore.Identity;
 
 namespace Gateway.BlindMatch.Data
@@ -6,7 +7,7 @@ namespace Gateway.BlindMatch.Data
     {
         public static async Task SeedRolesAndAdminAsync(IServiceProvider serviceProvider)
         {
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<MongoRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<Models.ApplicationUser>>();
 
             string[] roleNames = { "System Administrator", "Module Leader", "Supervisor", "Student" };
@@ -16,7 +17,7 @@ namespace Gateway.BlindMatch.Data
                 var roleExist = await roleManager.RoleExistsAsync(roleName);
                 if (!roleExist)
                 {
-                    await roleManager.CreateAsync(new IdentityRole(roleName));
+                    await roleManager.CreateAsync(new MongoRole(roleName));
                 }
             }
 
