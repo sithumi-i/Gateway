@@ -1,56 +1,214 @@
-# Visual Studio / .NET Core
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options directory
 .vs/
-*.user
-*.userosscache
-*.suo
-*.userprefs
-*.csproj.user
-*.sln.docstates
-
-# Build artifacts
-bin/
-obj/
-**/bin/
-**/obj/
-
-# Rider
-.idea/
-*.sln.iml
 
 # Visual Studio Code
 .vscode/
+*.code-workspace
 
-# ASP.NET temporary files
-*.dbmdl
-*.log
-*.vspscc
-*.vssscc
+# Rider IDE
+.idea/
+*.sln.iml
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# NuGet
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Test Results
+TestResults/
+*.trx
+*.coverage
+
+# NuGet Packages
 *.nupkg
-packages/
+*.snupkg
+!.nupkg
 .nuget/
 
-# Publish output
-publish/
-*.publish.xml
+# Package Manager files
+packages/
+.packages/
+nuget.config
+project.lock.json
+project.assets.json
+artifacts/
+*.nuget.props
+*.nuget.targets
 
-# IIS Express
-/.vs/*
-*.pidb
-*.svclog
+# dotnet runtime
+*.runtimeconfig.json
+*.runtimeconfig.prod.json
 
-# User secrets
+# Entity Framework
+*.edmx.diagram
+*.edmx.sql
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Application files
+*.sln.iml
+launchSettings.json
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+mongod.exe
+mongodb/
+data/
+
+# Application secrets and configuration
+appsettings.Local.json
+appsettings.*.local.json
 secrets.json
+.env
+.env.local
+.env.*.local
 
-# OS files
+# Build logs and files
+*.log
+*.logx
+*.ncrunchproject
+*.nccache.bin
+
+# Node modules (if using npm/node tools)
+node_modules/
+npm-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating System files
 Thumbs.db
-ehthumbs.db
 .DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+*~
+.project
+.cproject
+.classpath
 
-# JetBrains
-*.dotCover
-.idea/
+# IDEs
+nbproject/
+.netbeans/
+.eclipse
 
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
+# MonoDevelop
+.monodevelop/
+.dblite
+
+# BizTalk
+*.btp.cs
+*.btm.cs
+*.odx.cs
+*.xsd.cs
+
+# Coverage results
+coverage/
+opencover/
+CodeCoverage/
+
+# StyleCop
+StyleCopReport.xml
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Install logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*~
+*.swp
+*.swo
+
+# Mac OS X
+.AppleDouble
+.LSOverride
+._*
+
+# VS specific
+.vs/
+.vscode/
+.visualstudio/
+
+# Publishing
+PublishProfiles/
+*.pubxml
+*.publishproj
+*.publish.xml
+Web.*.config
+appsettings.Production.json
+
+# Deployment
+deploy/
+release/
+
+# Misc
+dist/
+build/
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
+
+# MSBuild
+*.proj.user
+*.csproj.user
+project.fragments.lock.json
+
+# Bower
+bower_components/
+
+# Runtime Data
+.runtimeidentifier
+
+# Generated docs
+docs/_build/
+
+# Local environment
+local.settings.json
+.env.local.*.json
