@@ -7,12 +7,14 @@ namespace Gateway.BlindMatch.Models
     {
         [Required]
         public string SupervisorId { get; set; } = string.Empty;
-        [ForeignKey("SupervisorId")]
+
+        [NotMapped]
         public ApplicationUser? Supervisor { get; set; }
 
         [Required]
         public int ResearchAreaId { get; set; }
-        [ForeignKey("ResearchAreaId")]
+
+        [NotMapped]
         public ResearchArea? ResearchArea { get; set; }
     }
 }

@@ -23,11 +23,23 @@ namespace Gateway.BlindMatch.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Challenge();
+
             var myProjects = await _context.ProjectProposals
-                .Include(p => p.ResearchArea)
-                .Include(p => p.Supervisor) // Include to show if assigned
-                .Where(p => p.StudentId == user.Id)
+                .Where(p => p.StudentId == user.Id.ToString())
+                .OrderByDescending(p => p.Id)
                 .ToListAsync();
+
+            // Manually populate navigation properties
+            var researchAreas = await _context.ResearchAreas.ToListAsync();
+            foreach (var p in myProjects)
+            {
+                p.ResearchArea = researchAreas.FirstOrDefault(r => r.Id == p.ResearchAreaId);
+                if (p.SupervisorId != null)
+                {
+                    p.Supervisor = await _userManager.FindByIdAsync(p.SupervisorId);
+                }
+            }
 
             return View(myProjects);
         }
@@ -45,14 +57,16 @@ namespace Gateway.BlindMatch.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
-                projectProposal.StudentId = user.Id;
+                if (user == null) return Challenge();
+
+                projectProposal.StudentId = user.Id.ToString();
                 projectProposal.Status = ProjectStatus.Pending;
 
                 _context.Add(projectProposal);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ResearchAreaId"] = new SelectList(_context.ResearchAreas, "Id", "Name", projectProposal.ResearchAreaId);
+            ViewBag.ResearchAreas = _context.ResearchAreas.ToList();
             return View(projectProposal);
         }
     }

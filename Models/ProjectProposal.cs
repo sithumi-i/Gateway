@@ -22,21 +22,24 @@ namespace Gateway.BlindMatch.Models
         [Required]
         public ProjectStatus Status { get; set; } = ProjectStatus.Pending;
 
-        // Foreign Key for ResearchArea
+        // Research Area reference
         [Required]
         public int ResearchAreaId { get; set; }
-        [ForeignKey("ResearchAreaId")]
+
+        [NotMapped]
         public ResearchArea? ResearchArea { get; set; }
 
-        // Foreign Key for Student (ApplicationUser)
+        // Student reference (stored as string ID)
         [Required]
         public string StudentId { get; set; } = string.Empty;
-        [ForeignKey("StudentId")]
+
+        [NotMapped]
         public ApplicationUser? Student { get; set; }
 
-        // Foreign Key for Supervisor (ApplicationUser)
+        // Supervisor reference (stored as string ID)
         public string? SupervisorId { get; set; }
-        [ForeignKey("SupervisorId")]
+
+        [NotMapped]
         public ApplicationUser? Supervisor { get; set; }
     }
 }
