@@ -2,18 +2,29 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Gateway.BlindMatch.Data;
 using Gateway.BlindMatch.Models;
+using AspNetCore.Identity.Mongo;
+using AspNetCore.Identity.Mongo.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("MongoDbConnection") ?? throw new InvalidOperationException("Connection string 'MongoDbConnection' not found.");
+var databaseName = builder.Configuration.GetSection("MongoDbSettings")["DatabaseName"] ?? "BlindMatchDB";
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
+    options.UseMongoDB(connectionString, databaseName));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentityMongoDbProvider<ApplicationUser, MongoRole>(
+    identity => {
+        identity.SignIn.RequireConfirmedAccount = false;
+        identity.Password.RequireDigit = true;
+        identity.Password.RequiredLength = 6;
+    },
+    mongo => { mongo.ConnectionString = connectionString + "/" + databaseName; }
+).AddDefaultUI();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -31,6 +42,7 @@ else
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();

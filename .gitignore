@@ -1,56 +1,69 @@
-# Visual Studio / .NET Core
-.vs/
-*.user
-*.userosscache
-*.suo
-*.userprefs
-*.csproj.user
-*.sln.docstates
-
-# Build artifacts
+# Build results
 bin/
 obj/
-**/bin/
-**/obj/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# User-specific files
+appsettings.Development.json
+*.personal
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+
+# IDE files
+*.swp
+*.swo
+*~
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Node (if used)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Testing
+TestResults/
+.coverage
+
+# Logs
+logs/
+*.log
 
 # Rider
 .idea/
 *.sln.iml
 
-# Visual Studio Code
-.vscode/
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
 
-# ASP.NET temporary files
-*.dbmdl
-*.log
-*.vspscc
-*.vssscc
+# BinSkim
+results/
 
-# NuGet
-*.nupkg
-packages/
-.nuget/
-
-# Publish output
+# Package
+.publish/
 publish/
-*.publish.xml
-
-# IIS Express
-/.vs/*
-*.pidb
-*.svclog
-
-# User secrets
-secrets.json
-
-# OS files
-Thumbs.db
-ehthumbs.db
-.DS_Store
-
-# JetBrains
-*.dotCover
-.idea/
-
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
+PublishProfiles/

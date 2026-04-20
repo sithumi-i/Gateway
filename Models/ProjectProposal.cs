@@ -19,24 +19,30 @@ namespace Gateway.BlindMatch.Models
         [StringLength(500)]
         public string TechnicalStack { get; set; } = string.Empty;
 
-        [Required]
+        // Status is set server-side, not from the form
         public ProjectStatus Status { get; set; } = ProjectStatus.Pending;
 
-        // Foreign Key for ResearchArea
+        // Optional uploaded document path
+        [StringLength(500)]
+        public string? DocumentPath { get; set; }
+
+        // Research Area reference
         [Required]
         public int ResearchAreaId { get; set; }
-        [ForeignKey("ResearchAreaId")]
+
+        [NotMapped]
         public ResearchArea? ResearchArea { get; set; }
 
-        // Foreign Key for Student (ApplicationUser)
-        [Required]
+        // Student ID is set server-side, not from the form
         public string StudentId { get; set; } = string.Empty;
-        [ForeignKey("StudentId")]
+
+        [NotMapped]
         public ApplicationUser? Student { get; set; }
 
-        // Foreign Key for Supervisor (ApplicationUser)
+        // Supervisor reference (stored as string ID)
         public string? SupervisorId { get; set; }
-        [ForeignKey("SupervisorId")]
+
+        [NotMapped]
         public ApplicationUser? Supervisor { get; set; }
     }
 }
