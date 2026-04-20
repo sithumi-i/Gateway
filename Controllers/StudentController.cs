@@ -22,16 +22,27 @@ namespace Gateway.BlindMatch.Controllers
         public async Task<IActionResult> Dashboard()
         {
             var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Challenge();
+
             var proposals = await _context.ProjectProposals
-                .Include(p => p.ResearchArea)
-                .Include(p => p.Supervisor)
-                .Where(p => p.StudentId == user!.Id)
+                .Where(p => p.StudentId == user.Id.ToString())
                 .OrderByDescending(p => p.Id)
                 .ToListAsync();
 
-            ViewBag.MatchedCount  = proposals.Count(p => p.Status == ProjectStatus.Matched);
-            ViewBag.PendingCount  = proposals.Count(p => p.Status == ProjectStatus.Pending);
-            ViewBag.UserName      = user!.FullName;
+            // Manually populate navigation properties
+            var researchAreas = await _context.ResearchAreas.ToListAsync();
+            foreach (var p in proposals)
+            {
+                p.ResearchArea = researchAreas.FirstOrDefault(r => r.Id == p.ResearchAreaId);
+                if (p.SupervisorId != null)
+                {
+                    p.Supervisor = await _userManager.FindByIdAsync(p.SupervisorId);
+                }
+            }
+
+            ViewBag.MatchedCount = proposals.Count(p => p.Status == ProjectStatus.Matched);
+            ViewBag.PendingCount = proposals.Count(p => p.Status != ProjectStatus.Matched);
+            ViewBag.UserName = user.FullName;
 
             return View(proposals);
         }
