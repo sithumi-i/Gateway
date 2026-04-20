@@ -1,0 +1,18 @@
+@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Logged out";
+}
+
+<div style="min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:3rem 1rem;">
+    <div style="max-width:420px;">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--success-container);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="var(--success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h2 style="font-size:1.75rem;font-weight:900;">You have been logged out</h2>
+        <p style="font-size:.9rem;color:var(--text-secondary);margin-bottom:2rem;">Thank you for using Blind-Match PAS. Your session has been closed securely.</p>
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-gradient" style="padding:.85rem 2rem;">
+            Return to Home
+        </a>
+    </div>
+</div>
